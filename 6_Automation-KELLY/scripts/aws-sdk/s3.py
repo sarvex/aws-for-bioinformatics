@@ -4,7 +4,7 @@ import boto3
 def createBucket(bucketName):
     s3 = boto3.resource('s3')
     bucket = s3.create_bucket(Bucket=bucketName)
-    print("Bucket " + bucketName + " created.")
+    print(f"Bucket {bucketName} created.")
     return bucket
 
 # List AWS S3 Buckets
@@ -17,7 +17,7 @@ def listBuckets():
 def addObject(bucketName, objectName, objectContent):
     s3 = boto3.resource('s3')
     s3.Bucket(bucketName).put_object(Key=objectName, Body=objectContent)
-    print("Object " + objectName + " added to bucket " + bucketName + ".")
+    print(f"Object {objectName} added to bucket {bucketName}.")
 
 # List Objects in AWS S3 Bucket
 def listObjects(bucketName):
@@ -30,4 +30,4 @@ def updateBucketConfig(bucketName, bucketConfig):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(bucketName)
     bucket.Action('PutBucketAcl', BucketAclConfiguration=bucketConfig)
-    print("Bucket " + bucketName + " configuration updated.")
+    print(f"Bucket {bucketName} configuration updated.")
